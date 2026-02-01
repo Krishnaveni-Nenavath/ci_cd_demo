@@ -1,0 +1,45 @@
+# =========================
+# DEPLOYMENT
+# =========================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraper-deployment
+  labels:
+    app: scraper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scraper
+  template:
+    metadata:
+      labels:
+        app: scraper
+    spec:
+      containers:
+      - name: scraper
+        image: cont_1
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TARGET_URL
+          valueFrom:
+            configMapKeyRef:
+              name: scraper-config
+              key: TARGET_URL
+
+---
+# =========================
+# SERVICE
+# =========================
+apiVersion: v1
+kind: Service
+metadata:
+  name: scraper-service
+spec:
+  type: ClusterIP
+  selector:
+    app: scraper
+  ports:
+  - port: 80
+    targetPort: 80
