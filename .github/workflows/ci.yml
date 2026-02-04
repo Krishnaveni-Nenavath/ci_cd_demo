@@ -50,3 +50,4 @@ jobs:
         run: |
           docker tag my-scraper:latest ${{ secrets.DOCKER_USERNAME }}/my-scraper:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/my-scraper:latest
+
