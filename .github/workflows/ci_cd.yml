@@ -1,11 +1,11 @@
-name: Scraper CI/CD Pipeline
+#name: Scraper CI/CD Pipeline
 
-on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: "0 */4 * * *"
+#on:
+ # push:
+   # branches:
+    #  - main
+  #schedule:
+    #- cron: "0 */4 * * *"
 
 # Global, reusable variables (NO hardcoding)
 env:
@@ -86,3 +86,4 @@ jobs:
             scraper=${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
           kubectl rollout status deployment/scraper-deployment
+
